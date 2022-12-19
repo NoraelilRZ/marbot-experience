@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PemasukanController;
+use App\Http\Controllers\JenisUangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function() {return view('home');});
+
+Route::get('/admin', [DashboardController::class, 'index']);
+
+Route::resource('/admin/pemasukan', PemasukanController::class);
+
+Route::resource('/admin/jenis-uang', JenisUangController::class);

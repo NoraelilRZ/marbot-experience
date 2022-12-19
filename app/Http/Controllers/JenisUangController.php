@@ -14,7 +14,7 @@ class JenisUangController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.jenis_uang.index');
     }
 
     /**
@@ -24,7 +24,9 @@ class JenisUangController extends Controller
      */
     public function create()
     {
-
+        return view('admin.jenis_uang.create',[
+            'jenis_uang' => JenisUang::all()
+        ]);
     }
 
     /**

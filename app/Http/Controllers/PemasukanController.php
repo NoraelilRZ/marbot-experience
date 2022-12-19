@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pemasukan;
+use App\Models\JenisUang;
 use Illuminate\Http\Request;
 
 class PemasukanController extends Controller
@@ -14,8 +15,9 @@ class PemasukanController extends Controller
      */
     public function index()
     {
-        return view('', [
-            'pemasukan' => Pemasukan::all()
+        return view('admin.pemasukan.index', [
+            'pemasukan' => Pemasukan::orderBy('id', 'desc')->get(),
+            'jenis' => JenisUang::all()
         ]);
     }
 
@@ -26,7 +28,7 @@ class PemasukanController extends Controller
      */
     public function create()
     {
-        return view('', [
+        return view('admin.pemasukan.create', [
             'jenis_uang' => JenisUang::all()
         ]);
     }
@@ -41,11 +43,11 @@ class PemasukanController extends Controller
     {
         $validatedData = $request->validate([
             'jenis_uang' => 'required',
-            'jumlah' => 'required'
+            'jumlah_pemasukan' => 'required'
         ]);
         Pemasukan::create($validatedData);
 
-        return redirect('/')->with('success', 'Pemasukan ditambahkan');
+        return redirect('/admin/pemasukan')->with('success', 'Pemasukan ditambahkan');
     }
 
     /**
@@ -67,7 +69,7 @@ class PemasukanController extends Controller
      */
     public function edit(Pemasukan $pemasukan)
     {
-        return view('', [
+        return view('admin.pemasukan.edit', [
             'pemasukan' => $pemasukan,
             'jenis_uang' => JenisUang::all()
         ]);
@@ -102,6 +104,6 @@ class PemasukanController extends Controller
     {
         Pemasukan::destroy($pemasukan->id);
 
-        return redirect()->with('success', 'Jenis');
+        return redirect('/admin/pemasukan')->with('success', 'Baris berhasil dihapus');
     }
 }
