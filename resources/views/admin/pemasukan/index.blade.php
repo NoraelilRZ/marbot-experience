@@ -31,9 +31,10 @@
                         </td>
                         <td>Rp {{ number_format($uang->jumlah_pemasukan,2) }}</td>
                         <td>{{ $uang->created_at }}</td>
-                        <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Edit">
+                        <td><button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                data-bs-target="#Edit{{ $loop->iteration }}">
                                 Edit</button>
-                            <form action="/admin/pemasukan/{{ $pemasukan[0]->id }}" method="post"
+                            <form action="/admin/pemasukan/{{ $uang->id }}" method="post"
                                 class="d-inline">
                                 @method('delete')
                                 @csrf
@@ -43,6 +44,22 @@
                             </form>
                         </td>
                     </tr>
+                    <div class="modal fade" id="Edit{{ $loop->iteration }}" tabindex="-1"
+                        aria-labelledby="label-create" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="label-edit">Ubah Pemasukan</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    @include('admin.pemasukan.edit')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 @endforeach
         </table>
         <!-- Modal Create -->
@@ -60,19 +77,6 @@
             </div>
         </div>
         <!-- Modal Edit -->
-        <div class="modal fade" id="Edit" tabindex="-1" aria-labelledby="label-create" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="label-edit">Ubah Pemasukan</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        @include('admin.pemasukan.edit')
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
     <a class="scroll-to-top rounded" href="#page-top">

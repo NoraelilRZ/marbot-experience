@@ -25,6 +25,9 @@
                         </div>
                     </div>
                     <div class="col-auto text-center">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#Edit{{ $loop->iteration }}">
+                            Edit</button>
                         <form action="/admin/jenis-uang/{{ $entry->id }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
@@ -32,6 +35,20 @@
                                 Hapus
                             </button>
                         </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="Edit{{ $loop->iteration }}" tabindex="-1" aria-labelledby="label-create"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="label-edit">Ubah Pemasukan</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            @include('admin.jenis_uang.edit')
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,6 +67,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
 @endsection
