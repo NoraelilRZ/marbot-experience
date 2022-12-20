@@ -14,7 +14,9 @@ class JenisUangController extends Controller
      */
     public function index()
     {
-        return view('admin.jenis_uang.index');
+        return view('admin.jenis_uang.index',[
+            'jenis_uang' => JenisUang::all()
+        ]);
     }
 
     /**
@@ -42,50 +44,7 @@ class JenisUangController extends Controller
         ]);
         JenisUang::create($validatedData);
 
-        return redirect('/')->with('success', 'Jenis ditambahkan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\JenisUang  $jenisUang
-     * @return \Illuminate\Http\Response
-     */
-    public function show(JenisUang $jenisUang)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\JenisUang  $jenisUang
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(JenisUang $jenisUang)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\JenisUang  $jenisUang
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, JenisUang $jenisUang)
-    {
-        $rules = [];
-
-        if ($request->title != $jenisUang->title) {
-            $rules['nama_jenis'] = 'required|max:255|unique:posts';
-        }
-
-        $validatedData = $request->validate($rules);
-        JenisUang::where('id', $jenisUang->id)->update($validatedData);
-
-        return redirect('/')->with('success', 'Jenis berhasil diubah');
+        return redirect('/admin/jenis-uang')->with('success', 'Jenis ditambahkan');
     }
 
     /**
@@ -98,6 +57,6 @@ class JenisUangController extends Controller
     {
         JenisUang::destroy($jenisUang->id);
 
-        return redirect('/')->with('success', 'Jenis dihapus');
+        return redirect('/admin/jenis-uang')->with('success', 'Jenis dihapus');
     }
 }

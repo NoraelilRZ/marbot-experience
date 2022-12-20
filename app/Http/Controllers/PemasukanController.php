@@ -51,17 +51,6 @@ class PemasukanController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Pemasukan  $pemasukan
-     * @return \Illuminate\Http\Response
-     */
-    // public function show(Pemasukan $pemasukan)
-    // {
-
-    // }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Pemasukan  $pemasukan

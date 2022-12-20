@@ -24,7 +24,7 @@
                                 {{ $jenis->where('id', $pemasukan[0]->jenis_uang)->first()->nama_jenis }}
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">Rp
-                                {{ $pemasukan[0]->jumlah_pemasukan }}
+                                {{ number_format($pemasukan[0]->jumlah_pemasukan,2) }}
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                                     {{ $jenis->where('id', $entry->jenis_uang)->first()->nama_jenis }}
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800 text-center">Rp
-                                    {{ $entry->jumlah_pemasukan }}
+                                    {{ number_format($entry->jumlah_pemasukan,2) }}
                                 </div>
                             </div>
                         </div>
@@ -77,5 +77,7 @@
         @endforeach
     </div>
 </div>
-
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
 @endsection
