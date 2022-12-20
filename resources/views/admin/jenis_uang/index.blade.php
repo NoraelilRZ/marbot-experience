@@ -7,7 +7,9 @@
     <br>
 
     <div class="row mb-3 px-4">
-        <a href="/admin/jenis-uang/create" class="btn btn-primary">Create</a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
+            Create
+        </button>
     </div>
     <div class="row">
         @foreach($jenis_uang as $entry)
@@ -34,6 +36,19 @@
                 </div>
             </div>
         @endforeach
+    </div>
+    <div class="modal fade" id="create" tabindex="-1" aria-labelledby="label-create" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="label-create">Pemasukan Baru</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @include('admin.jenis_uang.create')
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

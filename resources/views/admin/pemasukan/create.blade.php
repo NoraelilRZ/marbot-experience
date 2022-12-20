@@ -7,6 +7,7 @@
             </div>
             <div class="col-10">
                 <select class="form-select" name="jenis_uang" id="jenis_uang">
+                    <option value="0">-- Pilih Jenis Pemasukan --</option>
                     @foreach($jenis as $ctg)
                         <option value="{{ $ctg->id }}">{{ $ctg->nama_jenis }}</option>
                     @endforeach
